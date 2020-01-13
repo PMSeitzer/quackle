@@ -8,3 +8,9 @@ Makefile.Debug
 Makefile.Release
 debug
 release
+
+CMakeFiles/*
+Quackle_autogen/*
+data/*
+libquackle/*
+quackleio/*
