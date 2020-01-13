@@ -8,6 +8,26 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/Settings.cmake")
 
 find_package(Threads REQUIRED)
 
+set(CMAKE_CXX_STANDARD 11)
+
+SET(CMAKE_CXX_COMPILER "/usr/local/opt/llvm/bin/clang++")
+
+#Isuse 109: use openmp library
+set(CMAKE_CXX_FLAGS "-fopenmp")
+
+# Necessary for Qt Creator
+# commenting out causes linker error:
+#
+# ld: library not found for -lomp
+#
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/usr/local/opt/llvm/lib/")
+
+# Necessary for Qt Creator
+#
+# without this, cannot find std libraries
+#
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")
+
 set(LIBQUACKLE_SOURCES
 	alphabetparameters.cpp
 	bag.cpp

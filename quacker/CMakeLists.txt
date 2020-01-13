@@ -26,6 +26,12 @@ set(CMAKE_CXX_FLAGS "-fopenmp")
 #
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/usr/local/opt/llvm/lib/")
 
+# Necessary for Qt Creator
+#
+# without this, cannot find std libraries
+#
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")
+
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 set(CMAKE_AUTOMOC ON)
 
