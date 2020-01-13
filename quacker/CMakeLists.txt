@@ -12,6 +12,20 @@ add_subdirectory(.. libquackle)
 add_subdirectory(../quackleio quackleio)
 add_subdirectory(../data data)
 
+set(CMAKE_CXX_STANDARD 11)
+
+SET(CMAKE_CXX_COMPILER "/usr/local/opt/llvm/bin/clang++")
+
+#Isuse 109: use openmp library
+set(CMAKE_CXX_FLAGS "-fopenmp")
+
+# Necessary for Qt Creator
+# commenting out causes linker error:
+#
+# ld: library not found for -lomp
+#
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/usr/local/opt/llvm/lib/")
+
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 set(CMAKE_AUTOMOC ON)
 
