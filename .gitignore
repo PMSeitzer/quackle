@@ -31,5 +31,11 @@ dawginput.raw
 playabilities.raw
 smaller.raw
 DerivedData
+
+#cmake-related
 quacker/CMakeLists.txt.user
 quackle.pro.user
+liblibquackle.a
+CMakeCache.txt
+CMakeFiles/*
+cmake_install.cmake
