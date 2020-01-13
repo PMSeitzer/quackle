@@ -38,7 +38,7 @@ Simulator::Simulator()
 	: m_logfileIsOpen(false), m_hasHeader(false), m_dispatch(0), m_iterations(0), m_ignoreOppos(false)
 {
 	m_originalGame.addPosition();
-	setThreadCount(2);
+    setThreadCount(2);
 }
 
 Simulator::~Simulator()
@@ -303,8 +303,12 @@ void Simulator::simulate(int plies)
 
 	int messageCount = 0;
 
-	for (auto &moveIt : m_simmedMoves)
-	{
+    //#pragma omp parallel for reduction(+:messageCount)
+    //for (unsigned int i = 0; i < m_simmedMoves.size(); i++) {
+
+//        auto &moveIt = m_simmedMoves.at(i);
+
+    for (auto &moveIt : m_simmedMoves) {
 		if (!moveIt.includeInSimulation())
 			continue;
 
@@ -321,7 +325,9 @@ void Simulator::simulate(int plies)
 		message.levels = moveIt.levels;
 		message.xmlIndent = m_xmlIndent;
 
+        //#pragma omp critical
 		m_sendQueue.push(message);
+
 		messageCount++;
 	}
 
